@@ -1,0 +1,17 @@
+# Swift Package Manager
+.build/
+.swiftpm/
+Package.resolved
+
+# Built app bundle and packaging artifacts
+build/
+AppIcon.iconset/
+
+# macOS
+.DS_Store
+
+# Xcode (if ever opened there)
+*.xcodeproj
+*.xcworkspace
+xcuserdata/
+DerivedData/
