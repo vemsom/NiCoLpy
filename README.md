@@ -17,7 +17,23 @@ NiCoLpy lives in the menu bar, keeps a history of what you copy (text and images
 - **Launch at login** — optional, via the modern `SMAppService` API
 - **Right-click the menu bar icon** for Settings, Launch at Login, and Quit
 
-## Installation (step by step)
+## Installation
+
+> **The easy way — one command.** Open the **Terminal** app (press `⌘ Space`,
+> type *Terminal*, press `Return`), then copy-paste this line and press `Return`:
+>
+> ```bash
+> curl -fsSL https://raw.githubusercontent.com/vemsom/NiCoLpy/main/install.sh | bash
+> ```
+>
+> It checks your Mac, installs what's needed, builds NiCoLpy, puts it in your
+> Applications folder, and launches it. When it's done, look for the clipboard
+> icon 📋 in your menu bar. The only thing left is to turn on Accessibility (see
+> [Step 6](#step-6--allow-auto-paste-recommended)) so it can paste for you.
+
+If you'd rather do it yourself, here's every step by hand.
+
+## Installation by hand (step by step)
 
 NiCoLpy isn't on the App Store — you build it once on your own Mac with a single
 command, then drag it into your Applications folder. **No coding experience
