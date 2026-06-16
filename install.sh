@@ -88,9 +88,14 @@ else
 fi
 
 # --- 4. Build ----------------------------------------------------------------
-step "Building the app (this takes a minute)"
+step "Setting up a stable signing identity"
 cd "$SRC_DIR"
-chmod +x build-app.sh
+chmod +x setup-signing.sh build-app.sh
+# Creates the "NiCoLpy Local" certificate once so the Accessibility permission
+# survives future updates. Safe to run every time — it's a no-op if it exists.
+./setup-signing.sh || warn "Couldn't set up signing identity; continuing with ad-hoc."
+
+step "Building the app (this takes a minute)"
 ./build-app.sh release
 [[ -d "build/$APP_NAME.app" ]] || die "Build did not produce $APP_NAME.app."
 ok "Built $APP_NAME.app"

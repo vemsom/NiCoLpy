@@ -154,10 +154,20 @@ remove NiCoLpy from the list.
 ## For developers
 
 ```bash
+./setup-signing.sh        # one-time: create a stable local signing identity
 ./build-app.sh            # debug build → build/NiCoLpy.app
 ./build-app.sh release    # optimized build
 open build/NiCoLpy.app
 ```
+
+**About signing & the Accessibility permission.** macOS ties Accessibility
+permission to an app's code-signing identity. A plain ad-hoc signature changes
+on every build, so the OS would forget the permission each time you rebuild or
+update. `setup-signing.sh` creates a local, self-signed identity called
+`NiCoLpy Local`; `build-app.sh` then signs with it so the identity stays
+constant and you only grant Accessibility once. The one-line installer runs this
+for you automatically. The certificate is local to your Mac and can be removed
+any time from Keychain Access.
 
 ## How it works
 
