@@ -17,23 +17,131 @@ NiCoLpy lives in the menu bar, keeps a history of what you copy (text and images
 - **Launch at login** — optional, via the modern `SMAppService` API
 - **Right-click the menu bar icon** for Settings, Launch at Login, and Quit
 
-## Requirements
+## Installation (step by step)
 
-- macOS 13 (Ventura) or later
-- Swift toolchain (Command Line Tools is enough — full Xcode not required)
+NiCoLpy isn't on the App Store — you build it once on your own Mac with a single
+command, then drag it into your Applications folder. **No coding experience
+needed.** Just follow these steps exactly. It takes about 5 minutes.
 
-## Build & run
+> **What you need:** a Mac running macOS 13 (Ventura) or newer. That's it.
+
+### Step 1 — Open the Terminal app
+
+The Terminal is an app that already comes with every Mac.
+
+1. Press `⌘` (Command) and the `Space bar` at the same time. A search box appears
+   in the middle of the screen.
+2. Type **Terminal** and press `Return`.
+3. A window with a blinking cursor opens. This is where you'll paste commands.
+
+### Step 2 — Install Apple's developer tools (one-time)
+
+NiCoLpy needs a small free toolkit from Apple to build. You probably don't have
+it yet, so install it now. (If you already have it, the command just tells you so
+— no harm done.)
+
+Copy the line below, paste it into the Terminal window, and press `Return`:
+
+```bash
+xcode-select --install
+```
+
+- A popup window appears asking to install the tools. Click **Install** and then
+  **Agree**.
+- Wait for it to finish (a few minutes). When it's done, the popup closes by
+  itself.
+
+> Already have Xcode or the tools installed? You'll see a message like
+> *"command line tools are already installed"* — that's fine, move on.
+
+### Step 3 — Download and build NiCoLpy
+
+Copy this entire block, paste it into the Terminal, and press `Return`.
+It downloads NiCoLpy and builds the app for you automatically:
+
+```bash
+cd ~/Downloads && \
+git clone https://github.com/vemsom/NiCoLpy.git && \
+cd NiCoLpy && \
+./build-app.sh release
+```
+
+When it finishes (about a minute), you'll see a line that says **"Done."**
+The finished app is now in `~/Downloads/NiCoLpy/build/`.
+
+### Step 4 — Move the app to your Applications folder
+
+Copy and paste this line, then press `Return`:
+
+```bash
+cp -R ~/Downloads/NiCoLpy/build/NiCoLpy.app /Applications/
+```
+
+NiCoLpy is now installed in your Applications folder, just like any other app.
+
+### Step 5 — Open NiCoLpy for the first time
+
+Because NiCoLpy is a free app (not sold through Apple), macOS asks you to confirm
+the first time you open it. You only do this **once**.
+
+1. Open your **Applications** folder (in Finder, press `⌘⇧A`).
+2. **Right-click** (or hold `Control` and click) on **NiCoLpy**.
+3. Choose **Open** from the menu.
+4. A warning appears — click the **Open** button to confirm.
+
+That's it! Look at the top-right of your screen: a small clipboard icon 📋 now
+sits in your menu bar. NiCoLpy is running.
+
+> From now on, NiCoLpy just opens normally — you never have to right-click again.
+
+### Step 6 — Allow auto-paste (recommended)
+
+So that picking a clip can paste it for you automatically, give NiCoLpy one
+permission:
+
+1. When NiCoLpy first runs, a box may pop up asking for **Accessibility** access —
+   click **Open System Settings** and turn NiCoLpy **on**.
+2. If you missed it: open **System Settings → Privacy & Security →
+   Accessibility**, find **NiCoLpy** in the list, and switch it **on**.
+
+Without this, NiCoLpy still copies the clip you pick — you just paste it yourself
+with `⌘V`.
+
+## How to use it
+
+- **Copy things normally** with `⌘C`. NiCoLpy remembers them.
+- Press **`⌘⇧V`** (Command-Shift-V) anywhere to open the list of what you've
+  copied — it appears right next to your cursor.
+- **Pick a clip:** click it, or press a number key (`1`–`9`), or use `↑`/`↓` and
+  press `Return`. Press `esc` to close without pasting.
+- **Right-click the 📋 menu bar icon** for Settings, Launch at Login, and Quit.
+
+## Updating to a newer version
+
+Open Terminal and paste:
+
+```bash
+cd ~/Downloads/NiCoLpy && \
+git pull && \
+./build-app.sh release && \
+cp -R build/NiCoLpy.app /Applications/
+```
+
+(Quit NiCoLpy first by right-clicking the menu bar icon → Quit.)
+
+## Uninstalling
+
+Drag **NiCoLpy** from your Applications folder to the Trash. To also remove the
+permission, open **System Settings → Privacy & Security → Accessibility** and
+remove NiCoLpy from the list.
+
+## For developers
 
 ```bash
 ./build-app.sh            # debug build → build/NiCoLpy.app
 ./build-app.sh release    # optimized build
 open build/NiCoLpy.app
 ```
-
-On first launch, grant **Accessibility** permission when prompted
-(System Settings → Privacy & Security → Accessibility) so the auto-paste
-(`⌘V` simulation) works. Without it, the chosen clip is still placed on the
-clipboard so you can paste manually.
 
 ## How it works
 
